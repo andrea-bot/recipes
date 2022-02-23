@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <h2>Add a new recipe</h2>
+                    <a href="/logout">Logout</a>
+                    <a href="/dashboard">dashboard</a>
+                    <form action="/recipes/create" method="post">
+                        <label for="name">name</label>
+                        <input type="text" name="name" class="form-control">
+                        {% for error in get_flashed_messages(category_filter = ['name']) %}
+                            <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                        <label for="date">date</label>
+                        <input type="date" name="date" class="form-control">
+                        {% for error in get_flashed_messages(category_filter = ['date']) %}
+                            <p class="alert alert-danger">{{ error }}</p>
+                        {% endfor %}
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">description</label>
+                            <textarea class="form-control" name = "description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">instruction</label>
+                            <textarea class="form-control" name = "instruciton" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h6>Under 30 Minutes</h6>
+                            <input type="radio" name="under_thirty" value="yes">
+                            <label for="yes">yes</label><br>
+                            <input type="radio" name="under_thirty" value="no">
+                            <label for="no">no</label><br>
+                        </div>
+                        <br>
+                        <input type="submit" value="create" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
